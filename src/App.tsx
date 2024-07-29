@@ -1,11 +1,14 @@
 // styles
 import "./App.css";
 
+// types
+import { IUseFetchResponse } from "./types";
+
 // hooks
 import useFetch from "./useFetch";
 
 export default function App() {
-  const { data, isLoading, error, refetch } = useFetch(
+  const { data, isLoading, error, refetch }: IUseFetchResponse = useFetch(
     "https://jsonplaceholder.typicode.com/posts"
   );
 
