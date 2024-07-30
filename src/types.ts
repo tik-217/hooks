@@ -1,19 +1,9 @@
-export interface IFetchRequestParams {
-  params: {
-    _limit: number;
-  };
-}
+export type ReturnValue = [
+  value: string | null,
+  {
+    setItem: (value: string) => void;
+    removeItem: () => void;
+  }
+];
 
-interface IApiResponse {
-  userId: 1;
-  id: 1;
-  title: string;
-  body: string;
-}
-
-export interface IUseFetchResponse {
-  data: IApiResponse[];
-  isLoading: boolean;
-  error: string;
-  refetch: (params: IFetchRequestParams) => void;
-}
+export type UseLocalStorage = (key: string) => ReturnValue;
