@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-export default function useWindowEvent(
+export function useWindowEvent(
   type: string,
   listener: EventListenerOrEventListenerObject,
-  options: boolean | AddEventListenerOptions
+  options: EventListenerOptions
 ) {
   useEffect(() => {
     if (typeof window !== "undefined") {
