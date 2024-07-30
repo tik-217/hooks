@@ -1,37 +1,18 @@
 // styles
 import "./App.css";
 
-// types
-import { IUseFetchResponse } from "./types";
-
 // hooks
-import useFetch from "./useFetch";
+import useViewportScroll from "./useWindowScroll";
 
 export default function App() {
-  const { data, isLoading, error, refetch }: IUseFetchResponse = useFetch(
-    "https://jsonplaceholder.typicode.com/posts"
-  );
+  const [scroll, scrollTo] = useViewportScroll();
 
   return (
     <div>
-      <div>
-        <button
-          onClick={() =>
-            refetch({
-              params: {
-                _limit: 3,
-              },
-            })
-          }
-        >
-          Перезапросить
-        </button>
-      </div>
-      {isLoading && "Загрузка..."}
-      {error && "Произошла ошибка"}
-      {data &&
-        !isLoading &&
-        data.map((item) => <div key={item.id}>{item.title}</div>)}
+      <p>
+        Scroll position x: {scroll.x}, y: {scroll.y}
+      </p>
+      <button onClick={() => scrollTo({ y: 0 })}>Scroll to top</button>
     </div>
   );
 }
