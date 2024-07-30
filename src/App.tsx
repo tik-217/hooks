@@ -1,37 +1,19 @@
 // styles
 import "./App.css";
 
-// types
-import { IUseFetchResponse } from "./types";
-
 // hooks
-import useFetch from "./useFetch";
+import useLocalStorage from "./useLocalStorage";
 
 export default function App() {
-  const { data, isLoading, error, refetch }: IUseFetchResponse = useFetch(
-    "https://jsonplaceholder.typicode.com/posts"
-  );
+  const [token, { setItem, removeItem }] = useLocalStorage("token");
 
   return (
     <div>
+      <p>Твой токен: {token}</p>
       <div>
-        <button
-          onClick={() =>
-            refetch({
-              params: {
-                _limit: 3,
-              },
-            })
-          }
-        >
-          Перезапросить
-        </button>
+        <button onClick={() => setItem("new-token")}>Задать токен</button>
+        <button onClick={() => removeItem()}>Удалить токен</button>
       </div>
-      {isLoading && "Загрузка..."}
-      {error && "Произошла ошибка"}
-      {data &&
-        !isLoading &&
-        data.map((item) => <div key={item.id}>{item.title}</div>)}
     </div>
   );
 }
