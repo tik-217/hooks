@@ -1,19 +1,12 @@
-export interface IFetchRequestParams {
-  params: {
-    _limit: number;
-  };
+export interface IState {
+  value: string;
+  allValues: string[];
 }
 
-interface IApiResponse {
-  userId: 1;
-  id: 1;
-  title: string;
-  body: string;
+export interface IActionReducer {
+  type: string;
+  payload?: string | number;
 }
 
-export interface IUseFetchResponse {
-  data: IApiResponse[];
-  isLoading: boolean;
-  error: string;
-  refetch: (params: IFetchRequestParams) => void;
-}
+export type IUseToggleOutValue = string;
+export type IUseToggleOutSwitcher = (newValue?: string) => void;

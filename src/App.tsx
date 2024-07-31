@@ -1,37 +1,15 @@
 // styles
 import "./App.css";
 
-// types
-import { IUseFetchResponse } from "./types";
-
 // hooks
-import useFetch from "./useFetch";
+import useToggle from "./useToggle/useToggle";
 
 export default function App() {
-  const { data, isLoading, error, refetch }: IUseFetchResponse = useFetch(
-    "https://jsonplaceholder.typicode.com/posts"
-  );
+  const [value, toggle] = useToggle(["blue", "orange", "cyan", "teal"]);
 
   return (
-    <div>
-      <div>
-        <button
-          onClick={() =>
-            refetch({
-              params: {
-                _limit: 3,
-              },
-            })
-          }
-        >
-          Перезапросить
-        </button>
-      </div>
-      {isLoading && "Загрузка..."}
-      {error && "Произошла ошибка"}
-      {data &&
-        !isLoading &&
-        data.map((item) => <div key={item.id}>{item.title}</div>)}
-    </div>
+    <>
+      <button onClick={() => toggle()}>{value}</button>
+    </>
   );
 }
