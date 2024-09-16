@@ -2,9 +2,9 @@
 import "./App.css";
 
 // hooks
-import useHover from "./useHover";
+import { useHover } from "./useHover";
 
-export default function App() {
+export const App = () => {
   const { hovered, ref } = useHover();
 
   return (
@@ -12,4 +12,4 @@ export default function App() {
       {hovered ? "На меня навели мышку" : "Наведи мышкой на меня"}
     </div>
   );
-}
+};

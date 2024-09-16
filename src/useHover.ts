@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 
-export default function useHover() {
+export const useHover = () => {
   const [hovered, setHovered] = useState(false);
   const ref: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
@@ -22,4 +22,4 @@ export default function useHover() {
   }, []);
 
   return { hovered, ref };
-}
+};
