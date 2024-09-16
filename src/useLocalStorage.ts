@@ -1,23 +1,25 @@
 // types
 import { useState } from "react";
-import { ReturnValue } from "./types";
 
-export default function useLocalStorage(token: string) {
-  const [tokenItem, setTokenItem] = useState(token);
+// types
+import { IStorageValue, IUseLocalStorage } from "./types";
 
-  const setItem = (newToken: string) => {
-    setTokenItem(newToken);
+export const useLocalStorage: IUseLocalStorage = (token: string) => {
+  const [storageValue, setStorageValue] = useState<IStorageValue>(token);
+
+  const setItem = (storageValue: IStorageValue) => {
+    setStorageValue(storageValue);
   };
 
   const removeItem = () => {
-    setTokenItem("");
+    setStorageValue(null);
   };
 
   return [
-    tokenItem,
+    storageValue,
     {
       setItem,
       removeItem,
     },
-  ] as ReturnValue;
-}
+  ];
+};

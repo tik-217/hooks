@@ -2,7 +2,7 @@
 import "./App.css";
 
 // hooks
-import useLocalStorage from "./useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
 export default function App() {
   const [token, { setItem, removeItem }] = useLocalStorage("token");
